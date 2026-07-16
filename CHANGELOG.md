@@ -1,5 +1,25 @@
 # mattpocock-skills
 
+## 1.1.0
+
+### Minor Changes
+
+- [#406](https://github.com/mattpocock/skills/pull/406) — 更新 **`ask-matt`** 路由器映射完整 skill 集，新增 5 个缺失 skills 的路由。
+- [#464](https://github.com/mattpocock/skills/pull/464) — 推广并加固 **`code-review`**，从 `in-progress/` 移至 `engineering/`，新增 Fowler 代码坏味道基线。
+- [#464](https://github.com/mattpocock/skills/pull/464) — 改进 **`grilling`**：新增确认门槛（达成共识前不执行计划），区分*事实*（探索代码库查找）与*决策*（向人类提问）。
+- [#463](https://github.com/mattpocock/skills/pull/463) — **`writing-great-skills`** 新增两个 Steering 失败模式：**Negation**（否定语义会引导 agent 走向被禁止的行为）和 **Negative Space**（遗漏的决策被委托给 agent 的先验知识）。
+- [`850873c`](https://github.com/mattpocock/skills/commit/850873cd) — 将 **`prototype`** 改为模型调用 skill。
+- [#409](https://github.com/mattpocock/skills/pull/409) — 新增 **`research`** skill，作为后台 agent 针对一手来源调查问题。
+- [#469](https://github.com/mattpocock/skills/pull/469) — **`to-issues`** 增加宽重构支持（展开—收缩策略），重构流程文档结构。
+- [#464](https://github.com/mattpocock/skills/pull/464) — 统一规划 skills：**`to-prd` 重命名为 `to-spec`**，**`to-plan` 和 `to-issues` 合并为 `to-tickets`**。`to-tickets` 产出带阻塞边的曳光弹票据，支持本地文件和真正跟踪器两种发布模式。
+- [#464](https://github.com/mattpocock/skills/pull/464) — **`wayfinder`** 从 `in-progress/` 毕业进入 `engineering/`：`decision-mapping` 重命名为 `wayfinder`，以"目的地"为主导词，默认"规划不执行"，地图是索引而非存储，新增第四种 `task` 票据类型和 HITL/AFK 分类。
+
+### Patch Changes
+
+- [#464](https://github.com/mattpocock/skills/pull/464) — 重构 **`tdd`** 为纯参考 skill，新增同义反复测试反模式。
+- [`e00eadb`](https://github.com/mattpocock/skills/commit/e00eadb) — 扩展 **`triage`** 以支持外部 PR 的 triage。
+- [#472](https://github.com/mattpocock/skills/pull/472) — 修复 **`wayfinder`** 硬编码 issue 跟踪器文档路径的问题。
+
 ## 1.0.1
 
 ### Patch Changes

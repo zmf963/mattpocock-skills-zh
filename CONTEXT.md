@@ -1,22 +1,30 @@
-Skills 组织在 `skills/` 下的桶文件夹中：
+# Matt Pocock Skills
 
-- `engineering/` — 日常代码工作
-- `productivity/` — 日常非代码工作流工具
-- `misc/` — 保留但很少使用，不推广
-- `personal/` — 与我的个人设置绑定，不推广
-- `in-progress/` — 尚未准备好发布的草稿
-- `deprecated/` — 不再使用
+一组由 Claude Code 加载的 agent skills（斜杠命令与行为）。Skills 按 bucket（桶）组织，并由 `/setup-matt-pocock-skills` 产出的按仓库配置所消费。
 
-`engineering/` 或 `productivity/`（**推广的**桶）中的每个 skill 必须在顶层 `README.md` 中有引用，并在 `.claude-plugin/plugin.json` 中有条目。`misc/`、`personal/`、`in-progress/` 和 `deprecated/` 中的 skills 不得出现在两者中。
+## 语言（词汇表）
 
-顶层 `README.md` 中的每个 skill 条目必须将 skill 名称链接到其 `SKILL.md`。
+**Issue tracker（issue 跟踪器）**：
+托管仓库 issue 的工具——GitHub Issues、Linear、本地 `.scratch/` markdown 约定，或类似工具。`to-tickets`、`to-spec`、`triage`、`qa` 等 skills 会从中读取并写入。
+_避免_：backlog manager、backlog backend、issue host
 
-每个桶文件夹都有一个 `README.md`，列出桶中的每个 skill 并附带一行描述，skill 名称链接到其 `SKILL.md`。推广桶的 `README.md` 和顶层 `README.md` 将条目分组为**用户调用**和**模型调用**；非推广桶的 `README.md`（`misc/`、`personal/`）使用平铺列表。
+**Issue**：
+**Issue tracker** 内部一个被跟踪的工作单元——由 `to-tickets` 产出的 bug、任务、spec 或切片。
+_避免_：ticket（仅在引用把它们称为 ticket 的外部系统时使用，或用于**决策票据**——见下）
 
-`engineering/` 和 `productivity/` 中的 skills 还在 `docs/<bucket>/<skill-name>.md` 处有一个面向用户的文档页面（文档树镜像 `skills/` 下的那两个桶文件夹）。无论桶是什么，发布的 URL 都是 `https://aihero.dev/skills-<skill-name>`——文档路径仅用于仓库组织。当你添加、重命名或更改 `engineering/` 或 `productivity/` 中 skill 的行为时，按照 [.agents/writing-docs.md](./.agents/writing-docs.md) 创建或重新同步其文档页面。非推广桶（`misc/`、`personal/`、`in-progress/`、`deprecated/`）中的 skills **不**获取文档页面。
+**Decision ticket（决策票据）**：
+一个 `wayfinder` 单元——一张 `wayfinder:map` 的子 **Issue**，持有一个*问题*，其结论是一个决策，而非待执行的构建切片。**决策**这个限定词使其区别于实施票据；`wayfinder` 引入这个术语，然后简称为"票据"。
 
-每个 `SKILL.md` 要么是用户调用的（`disable-model-invocation: true`，只能由人类访问），要么是模型调用的（模型或用户可访问）。参见 [.agents/invocation.md](./.agents/invocation.md)。
+**Triage role（分诊角色）**：
+在 triage 期间施加于一个 **Issue** 的正典状态机标签（例如 `needs-triage`、`ready-for-afk`）。每个角色都通过 `docs/agents/triage-labels.md` 映射到 **Issue tracker** 中的一个真实标签字符串。
 
-[`ask-matt`](./skills/engineering/ask-matt/SKILL.md) 是映射每个用户可访问 skill 及其关系的路由器。重新同步文档页面的相同触发器也适用于它：每当你添加、重命名、删除或更改用户可访问 skill 如何适配流程时，重新阅读 `ask-matt` 的 `SKILL.md` 并更新它，以便映射保持准确——一个它从未提及的新 skill，或一个它仍然路由到的过时 skill，都是撒谎的路由器。
+## 关系
 
-要（重新）将每个 skill 链接到本地 harness skill 目录（`~/.claude/skills`、`~/.agents/skills`），运行 `scripts/link-skills.sh`。每个条目都是指向此仓库的符号链接，因此 `git pull` 可以保持已安装的 skills 最新；在添加、删除或重命名 skill 后重新运行该脚本。
+- 一个 **Issue tracker** 包含许多 **Issue**
+- 一个 **Issue** 同一时刻只携带一个 **Triage role**
+- 一个 **Decision ticket** 是一个 **Issue**（`wayfinder:map` 的子 issue）
+
+## 已标记的歧义
+
+- "backlog" 之前既用来表示托管 issue 的*工具*，也表示其中的*工作体*——已解决：该工具即 **Issue tracker**；"backlog" 不再作为领域术语使用。
+- "backlog backend" / "backlog manager"——已解决：合并进 **Issue tracker**。
