@@ -1,5 +1,15 @@
 # mattpocock-skills
 
+## 未发布（同步上游 `9603c1c`）
+
+### Minor Changes
+
+- [`c70cb09`](https://github.com/mattpocock/skills/commit/c70cb09) — 新增 **`batch-grill-me`**（`in-progress/`）skill：以**轮次**而非单问推进设计树的不懈访谈，每轮一次性提问整片"前沿"——所有前置条件已确定的决策——再根据用户回答重新计算。事实派子 agent 查找，决策由用户拍板。
+
+### 清理
+
+- 移除遗留目录 `skills/in-progress/wayfinder/`（v1.1.0 已毕业至 `engineering/wayfinder/`，但旧目录残留在仓库中未清理）。
+
 ## 1.1.0
 
 ### Minor Changes
