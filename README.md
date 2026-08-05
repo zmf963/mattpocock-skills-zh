@@ -22,49 +22,64 @@
 
 [订阅 Newsletter](https://www.aihero.dev/s/skills-newsletter)
 
-## 快速开始（30 秒配置）
+## 安装（30 秒配置）
 
-1. 运行 skills.sh 安装器：
+两条路，两种哲学。**[Claude Code 插件](https://code.claude.com/docs/en/plugins)** 将整个 skill 集安装为受管理的只读捆绑包，在我发布新版本时更新——你订阅而非 fork。**[skills.sh](https://skills.sh/mattpocock/skills)** 将可编辑的 skill 文件复制到你的项目中，所以你可以折腾它们，把它们变成自己的。二选一——两者都装会让你把每个 skill 复制两份。
+
+### 1. 获取 skills
+
+<details>
+<summary><strong>Claude Code</strong></summary>
+
+```bash
+claude plugins install mattpocock-skills
+```
+
+或者，在会话内：
+
+```
+/plugin install mattpocock-skills
+```
+
+它位于 Claude Code 的官方市场里，所以无需先添加任何东西，更新也会自动到达。
+
+</details>
+
+<details>
+<summary><strong>Codex 以及其他 agent</strong></summary>
 
 ```bash
 npx skills@latest add mattpocock/skills
 ```
 
-2. 选择你想要的 skills，以及想把它们安装到哪些 coding agent 上。**务必勾选 `/setup-matt-pocock-skills`**。
+选择你想要的 skills，以及想把它们安装到哪些 coding agent 上。**安装器会让你选择要带走哪些 skills——确保 `setup-matt-pocock-skills` 是其中之一。**
 
-3. 在你的 agent 中运行 `/setup-matt-pocock-skills`。它会：
-   - 询问你想用哪个 issue 跟踪器（GitHub、Linear，或本地文件）
-   - 询问你在 triage（分诊）工单时使用的标签（`/triage` 会用到标签）
-   - 询问你想把生成的文档保存在哪里
+原生 Codex 插件在路线图上——参见 [`.agents/adr/0002-ship-as-a-claude-code-plugin.md`](./.agents/adr/0002-ship-as-a-claude-code-plugin.md)。
 
-4. 搞定——可以开干了。
+</details>
 
-## 作为 Claude Code 插件安装
+<details>
+<summary><strong>给喜欢折腾的人</strong></summary>
 
-更喜欢无需手动维护的即插即用安装？这些 skills 也作为原生 [Claude Code 插件](https://code.claude.com/docs/en/plugins)发布。插件将整个 skill 集安装为受管理的捆绑包，可在我发布新版本时更新——你订阅而非 fork。
-
-在 Claude Code 内：
-
-```
-/plugin marketplace add mattpocock/skills
-/plugin install mattpocock-skills@mattpocock
-```
-
-或从你的 shell：
+在任意 agent 上使用同一个安装器——包括 Claude Code：
 
 ```bash
-claude plugin marketplace add mattpocock/skills
-claude plugin install mattpocock-skills@mattpocock
+npx skills@latest add mattpocock/skills
 ```
 
-然后每个仓库运行一次 `/setup-matt-pocock-skills`，与上面的快速开始完全相同。
+它会将 skills 写入你的仓库，作为你拥有且可编辑的普通文件。没有任何东西会在背后自动更新；当你想拉取我的最新变更时，用 `npx skills update`。
 
-两种安装方式，两种哲学：
+</details>
 
-- **[skills.sh](https://skills.sh/mattpocock/skills)** 将 skills 复制到你的项目中，所以你可以折腾它们，把它们变成自己的。
-- **插件**将其保持为只读、始终最新的捆绑包，你不编辑——当你只想让我的这套 skills 正常工作并跟随演进时最佳。
+### 2. 运行 `/setup-matt-pocock-skills`
 
-> 使用 Codex 或其他 agent？[skills.sh 安装器](https://skills.sh/mattpocock/skills) 已经将这些 skills 安装到 Codex 和其他 Agent-Skills 标准的 harness 中。原生 Codex 插件在路线上——参见 [`.agents/adr/0002-ship-as-a-claude-code-plugin.md`](./.agents/adr/0002-ship-as-a-claude-code-plugin.md)。
+在你的 agent 中，每个仓库运行一次。它会：
+
+- 询问你想用哪个 issue 跟踪器（GitHub、Linear，或本地文件）
+- 询问你在 triage（分诊）工单时使用的标签（`/triage` 会用到标签）
+- 询问你想把生成的文档保存在哪里
+
+### 3. 搞定——可以开干了。
 
 ## 为什么会有这些 Skills
 
